@@ -185,23 +185,107 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 
 
 
-<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
-<h2 class="wp-block-heading">Project</h2>
-
-
-
 <p class="wp-block-paragraph">Inspired by Diablo III, Spite: Bleeding Skies is a top down action game where the player have to use abilities granted to them by the gods to outmaneuver and defeat enemies.</p>
 
 
 
-<p class="wp-block-paragraph">In this project i worked on Navmesh pathfinding and optimizations and development tools. I especially enjoyed researching data structures for pre-processing meshes for more efficient use.</p>
+<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 
 
 
-<p class="wp-block-paragraph">One of the tools i made was an animation event tool, where a user could play an animation and insert events at specific timeframes. This allowed users to easily time sound events and syncing attacks with animations.</p>
+<h2 class="wp-block-heading">What I Did</h2>
+
+
+
+<p class="wp-block-paragraph">In this project i worked on level loading, loading times and a model viewing tool. I especially enjoyed researching data structures for pre-processing meshes for more efficient use.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Level Loading</h3>
+
+
+
+<p class="wp-block-paragraph">In this project, we were given a tool in which the level designers would make the levels of the game. The problem with this is that we are making our own game engine at this point, meaning that we need to create a method to load a level created in this tool into our game engine. I was the one given the task of making this method.</p>
+
+
+
+<p class="wp-block-paragraph">To explain how I solved this problem, I first need to give some context. Our engine used a component system. This means that objects inside our game are composed of several different components. These components could be a model component, AI component and Collision component. What I wanted to solve was a way to take the level asset, read where all the different objects would be placed, and then creating those objects at those positions with the correct components.</p>
+
+
+
+<p class="wp-block-paragraph">To create the correct objects at the correct destinations, I made a system for reading all the static objects with models. For those i only needed to create objects with the same model at the right position and scale. For enemies and other more advanced objects, I made a system in which a tag given to an object in the level editor, would indicate to our engine that that object should be created using a factory method (a factory being an object that creates objects). This allowed the level designers to place enemies, level exits, respawn points and other things.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Loading Times</h3>
+
+
+
+<p class="wp-block-paragraph">A problem that quickly became apparent was loading times. A level could take anywhere from 30 seconds to 2 minutes to load.</p>
+
+
+
+<p class="wp-block-paragraph">The cause of this problem I discovered to be because of the ineffiscient formatting of our asset files. Level and model files could be several megabytes of of mostly unused data, in formats that made reading the data into memory took alot of time. To fix this I made a tool that converted these files into a binary format that only contained the data we needed, and in a format that could be directly copied into memory, reducing the sizes massively and making reading the files much, much faster.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Navigation Mesh Analysis</h3>
+
+
+
+<p class="wp-block-paragraph">In our game, we needed to know alot of information about our navigation meshes. One of these types of information was edges. We wanted to be able to know if a line intersected the edge of the mesh, and the easiest way to do this was to create a list of all edges and see if any intersected. However, we did not yet know how to find these edges.</p>
+
+
+
+<p class="wp-block-paragraph">I remembered from a previous project that brute forcing edge detection could take minutes, so I wanted to make a tool, like I did for level and model assets described above, to pre-process the meshes and find the edges, before saving them to a file. However, no one wants to run a tool that could take upwards of 5 minutes to complete every time a level was changed. So I needed a better algorithm for finding edges. For this I found the half-edge data structure.</p>
+
+
+
+<p class="wp-block-paragraph">The half-edge data structure is a data structure wich allows very effescient algorithmes for tasks such as edge detection. I implemented it in the tool and used it to find edges. This was a remarkable improvement. What took several minutes now only took a few seconds.  And with this, my tool was now usable for pre-processing the navigation mesh asset.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Model Viewer</h3>
+
+
+
+<p class="wp-block-paragraph">During this project I created a Model Viewer. A model viewer is a tool that allows graphical designers to see how their assets will look like in the game.</p>
+
+
+
+<p class="wp-block-paragraph">All game engines will render their assets differently, and the easiest way to make sure that an asset looks like it should inside a game, is to render it inside the same engine, and tweaking it until it looks right.</p>
+
+
+
+<p class="wp-block-paragraph">I decided to make this tool for this project. But I also ended up adding additional features later for things such as viewing animations and adding animation events.</p>
+
+
+
+<p class="wp-block-paragraph">The basic modelviewer was quite difficult to make, but not in the way I had expected. Rendering a model with the assigned textures and materials was easy. I just needed to use the already made functions inside the engine to do so. However, allowing the user change assets and undo/redo actions was much harder.</p>
+
+
+
+<p class="wp-block-paragraph">To allow changing assets, I added the functionality of drag and drop for asset files into the modelviewer window. While this was quite easy when I managed to get it to work, it had alot of technical edge cases with window focus and other things interfering.</p>
+
+
+
+<p class="wp-block-paragraph">Undo/Redo was very hard. I had never done that before, so I made some mistakes early in development that I needed to correct later on. In the end, I ended up using a command list, which allowed undoing and redoing commands. This allowed me to take user input, make it into a command and use the command to do an action. This action could then be undone using the same command, which was saved on a stack.</p>
 </div>
 	</div>
 	

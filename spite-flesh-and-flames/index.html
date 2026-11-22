@@ -185,19 +185,55 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 
 
 
-<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
-<h2 class="wp-block-heading">Project</h2>
-
-
-
 <p class="wp-block-paragraph">Spite: Flesh and Flames is a Diablo inspired top down action game. The player is a pyromantic inquisitor sent to burn out corruption in the swamps. The player is granted abilities as they advance through the game, which they will use to outmaneuver and burn their enemies.</p>
 
 
 
-<p class="wp-block-paragraph">This project was alot of fun. I got to make state machine based AI for enemies and made the level imported for our level editing tool.</p>
+<div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h2 class="wp-block-heading">What I Did</h2>
+
+
+
+<p class="wp-block-paragraph">This project was alot of fun. I got to work on state machine based AI for enemies and level loading.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">State Machine AI</h3>
+
+
+
+<p class="wp-block-paragraph">A state machine is a machine with a discreet number of states. This can easiest be explained as using an example. An enemy has several states it can be in. An enemy can be in an idle state, where it stand around and does nothing special. Another state is a chase state, in which the enemy attempts to reach a target. And a final state needed to make a basic AI is an attacking state, in which the enemy attacks its target.</p>
+
+
+
+<p class="wp-block-paragraph">In this project, there were alot of different kinds of enemies. All these enemies needed quite a few states which they also needed to be able to change between. An enemy needs to be able to determine when to change state. I a target gets close, an enemy needs to exit its idle state and enter a chase state, and when close enough, enter an attacking state. This meant that I needed to make alot of conditions for switching states in enemies.</p>
+
+
+
+<p class="wp-block-paragraph">While making several tens of states and when each one should switch took time, I feel like i managed to create enemies that felt fun to play against. Altough I feel like I will use a different AI structure in the future for more complex uses.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Level Loading</h3>
+
+
+
+<p class="wp-block-paragraph">For this project I made the level loader. This was a work of frustration, but I also learned a lot.</p>
+
+
+
+<p class="wp-block-paragraph">To load a level, I needed to convert matrices from one coordinate system to another. This was a process i was entirely unfamiliar with. And through alot of trial and error, I managed. This struggle I feel like gave me alot of insight into how matrices are used to represent translation, rotation and scale. But I will also admit that it frustrated me to no end when learning.</p>
 </div>
 	</div>
 	

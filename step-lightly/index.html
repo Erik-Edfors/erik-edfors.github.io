@@ -200,27 +200,95 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 
 
 
+<p class="wp-block-paragraph">Step Lightly is a physics based puzzle game inspired by Little Nightmares. The player is a very small child that needs to use their environment to traverse the rooms of their house.</p>
+
+
+
 <div style="height:32px" aria-hidden="true" class="wp-block-spacer"></div>
 
 
 
-<h2 class="wp-block-heading">Project</h2>
+<h2 class="wp-block-heading">What I Did</h2>
 
 
 
-<p class="wp-block-paragraph">Step Lightly is a physics based puzzle game inspired by Little Nightmares. The player is a very small child that needs to use their environment to traverse the rooms of their house. </p>
+<p class="wp-block-paragraph">In this project, I worked on the Game Physics, Animations and Inverse Kinematics.</p>
 
 
 
-<p class="wp-block-paragraph">In this project, I worked on the Game Engine, Game Physics, Graphics, Animations and Inverse Kinematics.</p>
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
 
 
 
-<p class="wp-block-paragraph">Working with dynamic physics objects (boxes, cans, keys, etc…) for the first time was really fun. Making the player actually able to push and pull objects, less fun. But I can say that i learned alot about game physics from this project.</p>
+<h3 class="wp-block-heading">Game Physics</h3>
 
 
 
-<p class="wp-block-paragraph">I am really happy with how this game turned out. And I am glad that I got to work with such an amazing team on its development.</p>
+<p class="wp-block-paragraph">Physics is the core work of what I did in this project. The physics engine in this game engine was actually started by me in a previous <a href="/finders-keepers/" data-type="page" data-id="79">project</a>. So I was the most suited to continue development for our game as more requirements were needed of it.</p>
+
+
+
+<p class="wp-block-paragraph">Several new requirements were now needed for the physics engine. Dynamic physics objects being the most obvious, but also physics joints and the need for a player capable of interacting with the world.</p>
+
+
+
+<p class="wp-block-paragraph">The player was by far the most difficult thing to get right in this project. For this project, we needed the player to be able to interact with other dynamic objects. This was near impossible with the current system. The current player used a character controller wich did not interact with the world in the way we needed. A character controller only moved over the physics objects, whilst we needed the player to actually move objects it collided with. To fix this, I decided to make the player itself a dynamic object which is moved using forces.</p>
+
+
+
+<p class="wp-block-paragraph">The most difficult part about making the player an actual dynamic object was interpolation. While I did already implement interpolation for dynamic objects in the previous <a href="/finders-keepers/" data-type="page" data-id="79">project</a>, it was not good enough for the player. The camera whould jitter, and the player whould snap into a new position when switching directions. For this I needed to massively improve how interpolation was done in this project.</p>
+
+
+
+<p class="wp-block-paragraph">The solution for the player was to make the player lag behind the actual physics object it represented. This meant that interpolation was perfect, but a delay of 1 /20 second was added to all player movements. This however was not noticable to any playtesters, and therefore the solution I ended up using.</p>
+
+
+
+<p class="wp-block-paragraph">While the player now could theoretically push objects. We needed the player to be able to push and pull in a manor that felt like a person doing it. For this we needed physics joints.</p>
+
+
+
+<p class="wp-block-paragraph">A physics joint is a way to attach different physics objects to eachother. In this project we used it to attach objects the player is pushing/pulling to the players arms, and to do so in such a way that the player adds a disproportionate amount of force as to simulate the player pushing/pulling hard.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Animations</h3>
+
+
+
+<p class="wp-block-paragraph">Fot this project, I decided to remake our animation system. In previous projects we had used a system only able to play one animation at a time. Now we needed to be able to play different animations for different parts an object.</p>
+
+
+
+<p class="wp-block-paragraph">To solve this, I made a layered system. Animation layers could be added to an animation controller, and these layers could be configured to animate only certain parts of a model, and to combine their animations with others using weights. Allowing smooth transitions between different animations.</p>
+
+
+
+<p class="wp-block-paragraph">This allowed us to make the players lower half play a running animations, whilst having different poses and idle animations for the top half. An example of this is we used an animation layer to make the player raise their arm when holding their lighter. This allowed us to skip making variants of all animations with a rased lighter.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Inverse Kinematics</h3>
+
+
+
+<p class="wp-block-paragraph">Inverse kinematics is a method for making a set of joints attached to eachother move such that an endpoint is positioned at a target. For example, if a player needs to hold an item, we might want the player to place their hands at specific points on that item. To do this we needed inverse kinematics.</p>
+
+
+
+<p class="wp-block-paragraph">Implementing Inverse kinematics was actually quite easy with the changes I had made to animations above. I could create an Animation layer which calculated how to position a set of joints so that they reached a target point.</p>
+
+
+
+<p class="wp-block-paragraph">In the project I used inverse kinematics to position the arms of the player so that they actually touch objects they interact with. I also used it to make the mother reach with her arms towards the last known position of the player. As without being able to do so, she whould never be able to reach the player if they stood on something like a table or shelf.</p>
 </div>
 	</div>
 	

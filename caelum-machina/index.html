@@ -189,11 +189,79 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 
 
 
-<h2 class="wp-block-heading">Project</h2>
+<h2 class="wp-block-heading">What I Did</h2>
 
 
 
-<p class="wp-block-paragraph">This project was my first time developing a puzzle game. I worked on the moving robots, respawning and loading/unloading hidden areas. I still adore the art style of this game and wished I could have worked on it even more.</p>
+<p class="wp-block-paragraph">This project was my first time developing a puzzle game. I worked on the moving robots, respawning, loading/unloading areas and making level development tools. I still adore the art style of this game and wished I could have worked on it even more.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Robots</h3>
+
+
+
+<p class="wp-block-paragraph">This is the first game in wich I worked on game AI. For this project, I worked on adding an enemy in the form of robots. These robots would follow a path and attack the player if they stopped in front of them. It was quite fun to make the robots align with the tiles in the game, along with turning, walking and attacking.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Dev Tools</h3>
+
+
+
+<p class="wp-block-paragraph">In this game, I made some tools for level designer to use. One of which was simply a snapping tool that took objects that should snap to a tile, and snapped it in place. While not very complicated, I did get to learn how raycasting worked when trying to find the tile below an object that I wanted to align it to.</p>
+
+
+
+<p class="wp-block-paragraph">Another tool I made was a pathing tool. This tool allowed a user to create a path between tiles that the robots would move on. The tool I made found tiles that the user clicked on and added them to a list. The list was then drawn using arrows to show path and direction.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Respawning</h3>
+
+
+
+<p class="wp-block-paragraph">Whilst respawning might not sound too difficult, it is. In this game, the player will reach a checkpoint at the start of a sequence. The level will then play out in this sequence. Robots and platforms will move along this sequence in such a way that the player must make precise movement to reach the end. Respawning means that I must reset this sequence so that the player can finish the level using the intended path.</p>
+
+
+
+<p class="wp-block-paragraph">To reset the sequence of a level, I must first know what it looked like at the beginning. For this, I saved the state of a level whenever the player reached a checkpoint, and then when the player died, I removed everything in the level, and recreated it in the saved state. This, along with a fadeout to black, allows the player to continue playing the level after respawning without having to reload the entire scene, wich could have taken some time.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Loading / Unloading</h3>
+
+
+
+<p class="wp-block-paragraph">This is my first time using a form of culling. Culling being removing objects and things that no longer is relevant to the game so that they do not take resources or time on the processor.</p>
+
+
+
+<p class="wp-block-paragraph">When the player moves through the game, I wanted the levels to only load right before the player could see them. For this, i made it so that a level is only loaded when the player reaches the checkpoint right before it. The checkpoint being an elevator allowed things to apear of screen before the elevator moved the player up enough to see it.</p>
+
+
+
+<p class="wp-block-paragraph">Not loading a level before the player reaches them also made it so that the state of a level was not changed before the player could reach them. If all levels where loaded, then robots and moving platforms would be able to move around before the player even has reached the level, potentially making them impossible to complete.</p>
+
+
+
+<p class="wp-block-paragraph">Unloading is quite similar to loading a level. When it is not needed, it should be unloaded. Now it is simply done when a player leaves a level, instead of just at the start of the game.</p>
 </div>
 	</div>
 	

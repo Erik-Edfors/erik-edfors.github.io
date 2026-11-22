@@ -189,7 +189,7 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 
 
 
-<h2 class="wp-block-heading">Project</h2>
+<h2 class="wp-block-heading">What I Did</h2>
 
 
 
@@ -197,7 +197,39 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 
 
 
-<p class="wp-block-paragraph">In this game I developed the overal architecture of the game along with a tool for constructing levels. This project was the first time I created a development tool for a game.</p>
+<p class="wp-block-paragraph">In this game I developed the overal architecture of the game along with a tool for constructing levels. This project was also the first time I created a development tool for a game.</p>
+
+
+
+<h3 class="wp-block-heading">Engine Architecture</h3>
+
+
+
+<p class="wp-block-paragraph">In this game, I created an engine with a component system. A component system is a way to create objects in a game by combining different components. For example, an enemy could be composed of 4 components; Sprite, AI, Collision and Health. With a component system it is also easy to make factories (objects that create other objects) that make game objects like the enemy. Give the factory a request for an enemy at a certain position and it is created with all its components by the factory at the given position.</p>
+
+
+
+<p class="wp-block-paragraph">In this project I experimented a little. I had been inspired by how Unity handles creating objects using prefabs. Prefabs being a template for an object that the developer could create themselves inside the editor. I did something similar where I created a tools where developers could create and modify templates that then could be placed in a level. This made modifying enemies and projectiles easy.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Game Editor</h3>
+
+
+
+<p class="wp-block-paragraph">In this project I wanted to make a game editor. This I thought whould be a great learning experience, which it did turn out to be. But I also greatly underestimated how much work it whould be.</p>
+
+
+
+<p class="wp-block-paragraph">A level editor is a tool which allows a developer to view a level saved to a file, and change things inside it. A Game Editor allows for the same, but also allows changing how the game works. For example, a developer could in this tool place out enemies in a level, then decide that the enemy should have a different hitbox and health, and change those things as well inside the same tool.</p>
+
+
+
+<p class="wp-block-paragraph">To create the Game Editor, I first needed to  be able to render the game inside the tool. For this, I made the game run in the background of the tool and render to a window. I used proxy objects inside the engine to display the level without it actually playing out like the game would. Then i used ImGui to create a UI for creating, moving, editing and deleting objects in the game. This was alot of work, with alot of problems, but I did manage in the end to make a tool that allowed a developer to almost entirely create a game from scratch within it. You could create a template of an object, give it components, edit the values of the component and then place the object in the game, allowing for exact customization.</p>
 </div>
 	</div>
 	

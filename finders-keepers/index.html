@@ -189,11 +189,63 @@ a{text-decoration-thickness:1px!important;text-underline-offset:.1em}:where(.wp-
 
 
 
-<h2 class="wp-block-heading">Project</h2>
+<h2 class="wp-block-heading">What I Did</h2>
 
 
 
-<p class="wp-block-paragraph">In Finders Keepers i worked on level loading, physics engine and graphics optimization.</p>
+<p class="wp-block-paragraph">In Finders Keepers I worked on a smaller number of of much more complex tasks. I worked on level loading, physics engine and graphics optimization.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Level Loading</h3>
+
+
+
+<p class="wp-block-paragraph">In any game in which a player controls a character, there will exist a world. And this world is most often created by level designers for the game. While there exists a bunch of tools capable of creating beautiful worlds, our game engine is new and had no way to load a level created by our designers. My job was therefore to make sure that our engine could load a level.</p>
+
+
+
+<p class="wp-block-paragraph">An optimization that I also worked on in conjunction with leve loading was lowering load times when loading a level. For this, I created a tool which converted a level file into a more dense binary structure which could be tens of times smaller, and therefore faster to load and process.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Physics Engine</h3>
+
+
+
+<p class="wp-block-paragraph">This is by far the largest task I worked on in this project. My job was to take our game engine, and add physics simulation to it. While there exists APIs for implementing physics simulations (we used PhysX), there is still a need to make sure our engine could properly create and draw physics objects.</p>
+
+
+
+<p class="wp-block-paragraph">The greatest challange in this was probably interpolation. The physics engine is resource heavy. Which is why it is very common to only run the physics of a game some 20-30 times a second, unlike rendering, which is anywhere from 30-288 frames per second. This introduces the problem that all simulated objects only move 20 times per second, and drawing these objects just as they are whould make them look like they are at a lower framerate then everything else in the game.</p>
+
+
+
+<p class="wp-block-paragraph">To fix the issue of simulated objects not looking correctly, I implemented interpolation. Interpolation means taking a starting value and smoothly transforming it into its end value. I specifically interpolated the objects positions and rotations. During each drawing of a simulated object, I took two positions and rotations from the object. The one from the previous physics frame, and the last physics frame. Then, when the object was drawn, it interpolates between those two positions and rotations. This gives the illusion that simulated objects are moving smoothly, no matter how different the framerate of the physics engine and graphics of the game is.</p>
+
+
+
+<div style="height:16px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h3 class="wp-block-heading">Graphics Optimization</h3>
+
+
+
+<p class="wp-block-paragraph">In this project there were alot of issues with performance. Our game would occasionaly in graphically complex areas performed very poorly. I worked alot on this issue, and focused most on improving culling of graphical elements like models and lights.</p>
+
+
+
+<p class="wp-block-paragraph">One of the biggest improvements I made to the graphics engine in this project was making static shadow maps. Shadow maps are used by lights in a game to calculate if any given pixel on the screen is in shadow or not. Because lights and objects can move around, these shadow maps must be redrawn every frame. An improvement I made was making an alternative, static shadow map, that whould only be updated if the lightsource itself was moved. Otherwise it whould draw each object flagged as static close to itself onto the shadow map only once, which improved performance massively. </p>
 </div>
 	</div>
 	
